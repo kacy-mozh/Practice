@@ -76,11 +76,13 @@ keysAndValues({ a: "Apple", b: "Microsoft", c: "Google" })➞ [["a", "b", "c"], 
 keysAndValues({ key1: true, key2: false, key3: undefined })➞ [["key1", "key2", "key3"], [true, false, undefined]] */
 
 function keysAndValues(obj) {
-    let arr = [];
-    arr.push(Object.keys(obj), Object.values(obj))
-    console.log(arr);
+    let arr = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        arr[key] = obj[key];
+    })
+    return arr;
 }
 
-keysAndValues({ a: 1, b: 2, c: 3 });
-keysAndValues({ a: "Apple", b: "Microsoft", c: "Google" });
-keysAndValues({ key1: true, key2: false, key3: undefined })
+console.log(keysAndValues({ b: 2, a: 1, c: 3 }));
+console.log(keysAndValues({ b: "Microsoft", a: "Apple", c: "Google" }));
+console.log(keysAndValues({ key2: false, key1: true, key3: undefined }));
